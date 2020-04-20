@@ -19,6 +19,17 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "COVID19India"
+                outputFileName += "-v" + android.defaultConfig.versionName
+                if (variant.buildType.name == "release") {
+                    outputFileName += ".apk"
+                } else {
+                    outputFileName += "-debug.apk"
+                }
+            }
+        }
     }
 
 }
